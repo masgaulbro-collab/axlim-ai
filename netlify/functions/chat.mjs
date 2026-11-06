@@ -23,7 +23,7 @@ export default async (request) => {
     const body = await request.json();
     const message = body.message || "";
 
-ji    if (!message.trim()) {
+    if (!message.trim()) {
       return new Response(
         JSON.stringify({ error: "Pesan kosong" }),
         { status: 400, headers }
