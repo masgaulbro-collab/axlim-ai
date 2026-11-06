@@ -23,7 +23,7 @@ export default async (request) => {
     const body = await request.json();
     const message = body.message || "";
 
-    if (!message.trim()) {
+ji    if (!message.trim()) {
       return new Response(
         JSON.stringify({ error: "Pesan kosong" }),
         { status: 400, headers }
@@ -61,8 +61,7 @@ export default async (request) => {
           },
           contents,
           generationConfig: {
-            maxOutputTokens: 800,
-            temperature: 0.7
+  maxOutputTokens: 800
           }
         })
       }
