@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b18">
+<title>AXLIM AI — Your Future Assistant</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#070b18;--panel:rgba(14,22,43,.88);--line:rgba(119,169,255,.17);--blue:#62d7ff;--violet:#9c7bff;--text:#edf5ff;--muted:#91a2bd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#14254b 0%,#090f22 38%,#050812 78%);color:var(--text);font-family:'Space Grotesk',sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(115,160,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(115,160,255,.08) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.orb{position:fixed;width:380px;height:380px;border-radius:50%;filter:blur(100px);opacity:.16;pointer-events:none;animation:drift 12s ease-in-out infinite alternate}.orb.one{background:#397cff;top:10%;left:-180px}.orb.two{background:#8b4dff;right:-180px;top:40%;animation-delay:-5s}
+@keyframes drift{to{transform:translate(80px,55px) scale(1.2)}}@keyframes pulse{50%{box-shadow:0 0 45px #54cfff88,0 0 90px #8b68ff44}}@keyframes float{50%{transform:translateY(-12px)}}@keyframes blink{50%{opacity:.3}}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;max-width:1160px;padding:0 24px;margin:auto;border-bottom:1px solid var(--line);position:relative;z-index:2}
+.brand{font-weight:700;letter-spacing:2px;font-size:19px}.brand span{color:var(--blue)}.status{font:11px 'DM Mono',monospace;color:#9af5d2;letter-spacing:1px}.dot{display:inline-block;width:7px;height:7px;background:#54efb1;border-radius:50%;margin-right:8px;box-shadow:0 0 12px #54efb1}
+main{max-width:1040px;margin:auto;padding:72px 24px 70px;position:relative;z-index:1;text-align:center}.eyebrow{font:11px 'DM Mono',monospace;color:var(--blue);letter-spacing:3px;text-transform:uppercase}
+h1{font-size:clamp(42px,8vw,82px);line-height:.98;letter-spacing:-4px;margin:20px 0 18px}.gradient{background:linear-gradient(100deg,#fff 5%,#7de4ff 45%,#a68aff 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{max-width:600px;margin:0 auto;color:var(--muted);font-size:16px;line-height:1.7}
+.core-wrap{height:260px;display:grid;place-items:center;margin:28px auto 24px;position:relative}.core{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle at 35% 30%,#9cf3ff,#2877cf 35%,#171c57 72%);box-shadow:0 0 35px #4acaff88,0 0 100px #7e5cff44;animation:float 4s ease-in-out infinite,pulse 5s infinite}.core:before,.core:after{content:"";position:absolute;border:1px solid #76dfff88;border-radius:50%;inset:-20px;animation:spin 12s linear infinite}.core:after{inset:-38px;border-color:#9b83ff77;animation-duration:18s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}.core svg{width:66px;filter:drop-shadow(0 0 10px #fff)}.orbit{position:absolute;width:240px;height:90px;border:1px solid #8bbaff55;border-radius:50%;transform:rotate(-25deg);animation:spin 16s linear infinite}.orbit:after{content:"";position:absolute;width:8px;height:8px;background:#9af2ff;border-radius:50%;top:7px;left:25px;box-shadow:0 0 15px #9af2ff}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:28px 0 55px}.btn{border:1px solid var(--line);border-radius:12px;padding:14px 22px;color:var(--text);font:600 13px 'Space Grotesk';cursor:pointer;transition:.25s}.primary{background:linear-gradient(110deg,#3a9fe8,#7864e8);border:0;box-shadow:0 8px 30px #4d8dff44}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #5abfff44}.secondary{background:#111a31}
+.chat{max-width:720px;margin:0 auto;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;backdrop-filter:blur(18px);box-shadow:0 20px 70px #0005}
+.chat-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.chat-title{font-weight:600}.chat-sub{font:10px 'DM Mono';color:var(--muted);margin-top:4px}.tag{font:10px 'DM Mono';color:var(--blue);border:1px solid #62d7ff44;padding:6px 9px;border-radius:30px}
+.messages{height:300px;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}.message{max-width:88%;padding:12px 15px;border-radius:14px;font-size:13px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}.bot{align-self:flex-start;background:#182541;border:1px solid #5479b533}.user{align-self:flex-end;background:linear-gradient(120deg,#285d9c,#594a9e)}.typing{color:var(--blue);animation:blink 1s infinite}
+.composer{display:flex;gap:10px;padding:14px;border-top:1px solid var(--line)}input{min-width:0;flex:1;background:#080f20;border:1px solid var(--line);border-radius:11px;padding:14px;color:white;font:13px 'Space Grotesk';outline:none}input:focus{border-color:#62d7ff88}input:disabled,button:disabled{opacity:.55}.send{width:48px;border:0;border-radius:11px;background:linear-gradient(135deg,#43b9ec,#7966e9);color:white;font-size:18px;cursor:pointer}
+.chat-tools{display:flex;justify-content:space-between;align-items:center;padding:0 16px 13px;color:var(--muted);font:10px 'DM Mono'}.clear{border:0;background:transparent;color:var(--blue);font:inherit;cursor:pointer}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;text-align:left}.feature{padding:18px;border:1px solid var(--line);border-radius:15px;background:#0d1528aa}.feature b{font-size:13px}.feature p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:0}.icon{font-size:20px;margin-bottom:10px}
+footer{border-top:1px solid var(--line);text-align:center;padding:22px;color:#71819e;font:10px 'DM Mono';letter-spacing:1px}
+@media(max-width:650px){main{padding-top:54px}h1{letter-spacing:-2px}.features{grid-template-columns:1fr}.core-wrap{height:225px}.messages{height:340px}.subtitle{font-size:14px}.message{max-width:94%}}
+</style>
+</head>
+<body>
+<div class="orb one"></div><div class="orb two"></div>
+<header><div class="brand">AXLIM<span>.</span>AI</div><div class="status"><i class="dot"></i>SYSTEM ONLINE</div></header>
+<main>
+  <div class="eyebrow">Next generation intelligence</div>
+  <h1>MEET YOUR<br><span class="gradient">AI COMPANION.</span></h1>
+  <p class="subtitle">Jelajahi ide, pecahkan masalah, dan mulai sesuatu yang luar biasa. Masa depan interaksi digital ada di sini.</p>
+  <div class="core-wrap"><div class="orbit"></div><div class="core"><svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 12 83 31v38L50 88 17 69V31L50 12Z" stroke="white" stroke-width="3"/><path d="M34 43h8m16 0h8M38 61q12 10 24 0" stroke="white" stroke-width="4" stroke-linecap="round"/><circle cx="38" cy="42" r="3" fill="white"/><circle cx="62" cy="42" r="3" fill="white"/></svg></div></div>
+  <div class="actions"><button class="btn primary" onclick="document.querySelector('#prompt').focus()">✦ START CONVERSATION</button><button class="btn secondary" onclick="document.querySelector('#features').scrollIntoView({behavior:'smooth'})">EXPLORE FEATURES ↓</button></div>
+  <section class="chat" id="chat">
+    <div class="chat-head"><div><div class="chat-title">AXLIM Assistant</div><div class="chat-sub">AI CHAT · BAHASA INDONESIA</div></div><div class="tag" id="mode">AI CONNECTING</div></div>
+    <div class="messages" id="messages"><div class="message bot">Halo! 👋 Aku AXLIM AI. Tanyakan apa saja—aku akan berusaha membantu.</div></div>
+    <form class="composer" id="form"><input id="prompt" autocomplete="off" maxlength="4000" placeholder="Ketik pesan untuk AXLIM..." aria-label="Pesan"><button class="send" id="send" aria-label="Kirim">➤</button></form>
+    <div class="chat-tools"><span>Jangan masukkan kata sandi atau data rahasia.</span><button class="clear" type="button" id="clear">Hapus percakapan</button></div>
+  </section>
+  <section class="features" id="features">
+    <div class="feature"><div class="icon">🧠</div><b>Smart Interaction</b><p>Ruang untuk bertanya, mengeksplorasi ide, dan memulai percakapan.</p></div>
+    <div class="feature"><div class="icon">⚡</div><b>Fluid Experience</b><p>Antarmuka ringan dengan transisi halus dan responsif di berbagai layar.</p></div>
+    <div class="feature"><div class="icon">🔮</div><b>Future Interface</b><p>Visual futuristik, cahaya neon, dan elemen animasi yang hidup.</p></div>
+  </section>
+</main>
+<footer>AXLIM AI · BUILT FOR THE FUTURE</footer>
+<script>
+const form=document.getElementById('form'),input=document.getElementById('prompt'),messages=document.getElementById('messages'),send=document.getElementById('send'),mode=document.getElementById('mode');
+let history=[];
+function add(text,who){const el=document.createElement('div');el.className='message '+who;el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;return el}
+async function checkStatus(){try{const r=await fetch('/.netlify/functions/chat',{method:'GET'});const data=await r.json();mode.textContent=r.ok&&data.configured?'AI READY':(r.ok?'SETUP NEEDED':'AI OFFLINE');}catch{mode.textContent='AI OFFLINE';}}
+document.getElementById('clear').addEventListener('click',()=>{history=[];messages.innerHTML='';add('Percakapan dihapus. Ada yang bisa AXLIM bantu?','bot')});
+form.addEventListener('submit',async e=>{
+ e.preventDefault();const value=input.value.trim();if(!value||send.disabled)return;
+ add(value,'user');input.value='';input.disabled=true;send.disabled=true;
+ const typing=add('AXLIM sedang berpikir...','bot');typing.classList.add('typing');
+ try{
+  const response=await fetch('/.netlify/functions/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:value,history})});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||'Gagal menghubungi AI. Coba lagi.');
+  typing.classList.remove('typing');typing.textContent=data.reply||'Maaf, belum ada jawaban. Coba lagi.';
+  history.push({role:'user',content:value},{role:'assistant',content:typing.textContent});history=history.slice(-20);
+ }catch(err){typing.classList.remove('typing');typing.textContent='⚠️ '+err.message;}
+ finally{input.disabled=false;send.disabled=false;input.focus();}
+});
+checkStatus();
+</script>
+</body>
+</html>
